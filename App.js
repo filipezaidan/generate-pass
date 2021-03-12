@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
 import Slider from '@react-native-community/slider';
+import Clipboard from 'expo-clipboard';
 
 let charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
@@ -18,6 +19,11 @@ export default function App(){
     }
 
     setPassword(pass);
+  }
+
+  function copyPassword(){
+    Clipboard.setString(password);
+    alert('Senha copiada com sucesso!')
   }
 
   return(
@@ -48,7 +54,7 @@ export default function App(){
 
       {password !== '' && (
         <View style={styles.area}>
-          <Text style={styles.password}>{password}</Text>
+          <Text style={styles.password} onLongPress={copyPassword}>{password}</Text>
         </View>
       )}
       
